@@ -8,7 +8,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+.git"
+    "url": "git+https://github.com/bee85919/beetube-clone.git"
   },
   "scripts": {
     "start": "node build/init.js",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/bee85919/beetube-clone/issue"
   },
-  "homepage": "https://github.com/bee85919/beetube-clone",
+  "homepage": "https://beetube-clone.herokuapp.com/",
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
