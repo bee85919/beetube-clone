@@ -94,8 +94,8 @@ const init = async () => {
   stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
-      width: 1024,
-      height: 576,
+      width: 640,
+      height: 480,
     },
   });
   video.srcObject = stream;
