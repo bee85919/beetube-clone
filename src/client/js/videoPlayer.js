@@ -117,7 +117,7 @@ const handleEnded = () => {
 
 const handleKeySpace = (event) => {
   if (event.code === "Space") {
-    handlePlayAndStop();
+    handlePlayClick();
   }
 };
 
