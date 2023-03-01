@@ -17,6 +17,14 @@ let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
+if (video.readyState >= 2) {
+  getmetadata();
+};
+  
+function getmetadata() {
+  handleLoadedMetadata();
+};
+
 const handlePlayClick = (e) => {
   if (video.paused) {
     video.play();
@@ -107,13 +115,22 @@ const handleEnded = () => {
   });
 };
 
+const handleKeySpace = (event) => {
+  if (event.code === "Space") {
+    handlePlayAndStop();
+  }
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
+video.addEventListener("click", handlePlayClick);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
+document.addEventListener("keyup", handleKeySpace);
+
