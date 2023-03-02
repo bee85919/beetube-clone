@@ -29,6 +29,7 @@ block content
             a(href=`${video.id}/edit`) Edit Video 
         br
         a(href=`${video.id}/delete`) Delete Video 
+        // 다른사람이 올린 비디오를 삭제하기 위해 로그인을 하지 않아도 비디오를 삭제할 수 있도록 조치함.
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm
