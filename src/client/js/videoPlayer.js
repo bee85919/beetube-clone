@@ -17,14 +17,6 @@ let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
-if (video.readyState >= 2) {
-  getmetadata();
-};
-  
-function getmetadata() {
-  handleLoadedMetadata();
-};
-
 const handlePlayClick = (e) => {
   if (video.paused) {
     video.play();
