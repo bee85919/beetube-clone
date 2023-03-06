@@ -92,12 +92,18 @@ export const postUpload = async (req, res) => {
 };
 
 export const deleteVideo = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params;  
+  const {
+    user: { _id },
+  } = req.session;
   const video = await Video.findById(id);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   await Video.findByIdAndDelete(id);
+  
+  user.videos.splice(user.videos.indexOf(id), 1);  
+  user.save();
   return res.redirect("/");
 };
 
@@ -143,24 +149,6 @@ export const createComment = async (req, res) => {
   video.comments.push(comment._id);
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
-};
-
-export const updateComment = async (req, res) => {
-  const {
-    session: { user },
-    body: { text },
-    params: { id },
-  } = req;
-  const video = await Video.findById(video);
-  if (!video) return res.sendStatus(404);
-  const comment = await Comment.create({
-    text,
-    owner: user._id,
-    video: id,
-  });
-  video.comments.push(comment._id);
-  video.save();
-  return res.sendStatus(201);
 };
 
 export const deleteComment = async (req, res) => {
