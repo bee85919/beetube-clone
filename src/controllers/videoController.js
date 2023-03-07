@@ -99,7 +99,9 @@ export const deleteVideo = async (req, res) => {
   const {
     user: { _id },
   } = req.session;
+
   const video = await Video.findById(id);
+
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -169,17 +171,20 @@ export const deleteComment = async (req, res) => {
 
   const comment = await Comment.findById(commentId).populate("owner");
   const videoId = comment.video;
+
   if (String(_id) !== String(comment.owner._id)) {
     return res.sendStatus(404);
   }
+
   const video = await Video.findById(videoId);
+
   if (!video) {
     return res.sendStatus(404);
   }
 
-  video.comments.splice(video.comments.indexOf(commentId), 1);
-  await video.save();
+  video.comments.splice(video.comments.indexOf(commentId), 1);  
   await Comment.findByIdAndDelete(commentId);
+  await video.save();
 
   return res.sendStatus(200);
 };
