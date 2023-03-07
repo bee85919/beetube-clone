@@ -49,3 +49,7 @@
     }
   }
 }
+
+.videoControls__playBtn:hover, .videoControls__timeline:hover, #volume:hover, #mute:hover, #fullScreen:hover {
+  cursor: pointer;
+}
